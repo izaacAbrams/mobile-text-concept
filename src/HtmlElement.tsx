@@ -14,21 +14,21 @@ export const HtmlElement = ({
   const quillRef = useRef(null);
   const quillContainerRef = useRef(null);
 
-  useEffect(() => {
-    if (!quillContainerRef.current) return;
-    if (!clickedOnce) return;
+  // useEffect(() => {
+  //   if (!quillContainerRef.current) return;
+  //   if (!clickedOnce) return;
 
-    quillRef.current = new Quill(quillContainerRef.current, {
-      toolbar: false,
-      modules: { toolbar: false },
-    });
-    quillRef.current.setText("Header text");
-    const length = quillRef.current.getLength();
-    quillRef.current.setSelection(0, length - 1); // Select entire text
-    quillRef.current.focus();
-    // quillRef.current.root.focus();
-    // quillRef.current.root.tabIndex = -1;
-  }, [clickedOnce]);
+  //   quillRef.current = new Quill(quillContainerRef.current, {
+  //     toolbar: false,
+  //     modules: { toolbar: false },
+  //   });
+  //   quillRef.current.setText("Header text");
+  //   const length = quillRef.current.getLength();
+  //   quillRef.current.setSelection(0, length - 1); // Select entire text
+  //   quillRef.current.focus();
+  //   // quillRef.current.root.focus();
+  //   // quillRef.current.root.tabIndex = -1;
+  // }, [clickedOnce]);
 
   if (!clickedOnce) return <Group></Group>;
 

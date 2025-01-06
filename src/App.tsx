@@ -4,6 +4,7 @@ import Konva from "konva";
 import { Stage, Layer, Group } from "react-konva";
 import { HtmlElement } from "./HtmlElement";
 import ReactDOM from "react-dom/client";
+import Quill from "quill/dist/quill";
 
 export default function App() {
   const [div] = React.useState(() => document.createElement("div"));
@@ -11,6 +12,23 @@ export default function App() {
 
   const [clickedOnce, setClickedOnce] = React.useState(false);
   // const quillContainerRef = useRef(null);
+
+  React.useEffect(() => {
+    const quillContainer = document.querySelector(".quill-container");
+    if (!quillContainer) return;
+    if (!clickedOnce) return;
+
+    const quill = new Quill(quillContainer, {
+      toolbar: false,
+      modules: { toolbar: false },
+    });
+    quill.setText("Header text");
+    const length = quill.getLength();
+    quill.setSelection(0, length - 1); // Select entire text
+    quill.focus();
+    // quillRef.current.root.focus();
+    // quillRef.current.root.tabIndex = -1;
+  }, [clickedOnce]);
 
   const addText = () => {
     setClickedOnce(!clickedOnce);
